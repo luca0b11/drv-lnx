@@ -1,0 +1,30 @@
+ioctl (Input and Output Control)   
+        - interazione degli utenti da user space con il device
+        - user space send command to kernel space
+        - implementare diverse operazioni verso il device
+        - struttura funzione device_ioctl: 
+                    file associato al device (?)
+                    comando da eseguire
+                    arg puntatore a dati da scambiare con il driver
+                    (diversa interazione a seconda del comando)
+                                            
+
+
+comando lettura:
+        - trasferire dati da kernel space a user spaceù
+        - copy_to_user((int32_t*) arg, p_vals, sizeof(u32) * size);
+            - arg: puntatore memoria dati user
+            - dati che devono essere copiati
+
+        - read_relaxed (?)
+
+comandi scrittura:
+        - trasferire dati da user space a kernel space
+        - write_relaxed (?)
+        - copy_from_user (?)
+
+
+vantaggi ioctl:
+        - Flessibilità -> comandi specifici per il nostro device
+
+        * definizione comandi ioctl -> MACRO _IOR/_IOW (?)
